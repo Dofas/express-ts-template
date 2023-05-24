@@ -6,6 +6,7 @@ const request = supertest(app);
 describe('App test', () => {
     it("should return 'Working' text", async () => {
         const response = await request.get('/');
+        expect(response.status).toBe(200);
         expect(response.body.message).toBe('Working');
     });
 });
