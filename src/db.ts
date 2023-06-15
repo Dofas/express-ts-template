@@ -1,11 +1,13 @@
-import { Pool } from 'pg';
+import { Sequelize } from 'sequelize';
+import { DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER } from './config';
 
-const pool = new Pool({
-    user: process.env.POSTGRESUSER,
-    database: process.env.POSTGRESDATABASE,
-    password: process.env.POSTGRESPASSWORD,
-    port: Number(process.env.POSTGRESPORT),
-    host: process.env.POSTGRESHOST,
+const sequelize = new Sequelize({
+    dialect: 'postgres',
+    host: DB_HOST,
+    port: DB_PORT,
+    database: DB_NAME,
+    username: DB_USER,
+    password: DB_PASS,
 });
 
-export default pool;
+export default sequelize;

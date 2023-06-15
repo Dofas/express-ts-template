@@ -1,8 +1,6 @@
 import app from './server';
-import pool from './db';
+import { APP_PORT } from './config';
 
-const PORT = process.env.PORT || 3000;
-
-app.listen(PORT, () => {
-    return console.log(`Express started on port ${PORT}} and ${pool}`);
+app.listen(APP_PORT, () => {
+    return console.log(`Express started on port ${APP_PORT}}`);
 });
