@@ -7,6 +7,10 @@ export const User = sequelize.define('User', {
         autoIncrement: true,
         primaryKey: true,
     },
+    name: {
+        type: DataTypes.STRING(255),
+        allowNull: false,
+    },
     email: {
         type: DataTypes.STRING(255),
         allowNull: false,
@@ -14,13 +18,5 @@ export const User = sequelize.define('User', {
     password: {
         type: DataTypes.STRING(255),
         allowNull: false,
-    },
-    access_token: {
-        type: DataTypes.STRING(255),
-        allowNull: true,
-    },
-    refresh_token: {
-        type: DataTypes.STRING(255),
-        allowNull: true,
     },
 });

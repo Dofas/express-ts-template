@@ -10,4 +10,11 @@ const sequelize = new Sequelize({
     password: DB_PASS,
 });
 
+sequelize
+    .sync()
+    .then(() => {
+        console.log('Db started');
+    })
+    .catch((error) => console.log(`db failed to start ${error.message}`));
+
 export default sequelize;
