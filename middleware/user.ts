@@ -8,16 +8,19 @@ export async function checkUserData(
     next: NextFunction,
 ) {
     try {
+        if (request.method === 'OPTIONS') {
+            next();
+        }
+
         const { name, email } = request.body;
         const userNameInDatabase = await User.findOne({
             where: {
                 name,
             },
         });
-        console.log('userNameInDatabase', userNameInDatabase);
         if (userNameInDatabase) {
-            return ApiError.badRequest(
-                'Username with that name already exists',
+            return next(
+                ApiError.badRequest('Username with that name already exists'),
             );
         }
 
@@ -27,13 +30,15 @@ export async function checkUserData(
             },
         });
         if (emailInDatabase) {
-            return ApiError.badRequest(
-                'Username with that email already exists',
+            return next(
+                ApiError.badRequest('Username with that email already exists'),
             );
         }
 
         next();
     } catch (error) {
-        ApiError.internal(`Error in checkUserData middleware ${error}`);
+        return next(
+            ApiError.internal(`Error in checkUserData middleware ${error}`),
+        );
     }
 }

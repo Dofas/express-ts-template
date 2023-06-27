@@ -8,7 +8,7 @@ export default function errorHandler(
     next: NextFunction,
 ) {
     if (error instanceof ApiError) {
-        return res.status(error.status).json(error.message);
+        return res.status(404).json(error.message);
     }
     return res.status(500).json('Un handled Error');
 }
