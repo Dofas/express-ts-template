@@ -1,7 +1,8 @@
 import { NextFunction, Request, Response } from 'express';
 import bcrypt from 'bcrypt';
-import { User } from '../models/User';
-import ApiError from '../error/ApiError';
+import { User } from '../../models/User';
+import ApiError from '../../error/ApiError';
+import { getUserWithoutId } from '../../helpers/user';
 
 class UserController {
     async createUser(request: Request, response: Response, next: NextFunction) {
@@ -44,11 +45,9 @@ class UserController {
                 );
             }
 
-            const convertedUser = user.toJSON();
+            const userWithoutPassword = getUserWithoutId(user);
 
-            return response
-                .status(400)
-                .send({ name: convertedUser.name, email: convertedUser.email });
+            return response.status(400).send({ user: userWithoutPassword });
         } catch (error) {
             return next(
                 ApiError.internal(`Error in createUser controller ${error}`),

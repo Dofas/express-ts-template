@@ -1,5 +1,6 @@
-import { Sequelize } from 'sequelize';
+import { Sequelize } from 'sequelize-typescript';
 import { DB_HOST, DB_NAME, DB_PASS, DB_PORT, DB_USER } from './config';
+import { User } from '../models/User';
 
 const sequelize = new Sequelize({
     dialect: 'postgres',
@@ -10,11 +11,6 @@ const sequelize = new Sequelize({
     password: DB_PASS,
 });
 
-sequelize
-    .sync()
-    .then(() => {
-        console.log('Db started');
-    })
-    .catch((error) => console.log(`db failed to start ${error.message}`));
+sequelize.addModels([User]);
 
 export default sequelize;
