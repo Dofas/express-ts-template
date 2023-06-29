@@ -2,17 +2,17 @@ import { AllowNull, Column, Model, Table, Unique } from 'sequelize-typescript';
 
 @Table
 export class User extends Model {
-    @Column
     @Unique
     @AllowNull(false)
+    @Column
     name!: string;
 
-    @Column
     @Unique
     @AllowNull(false)
+    @Column
     email!: string;
 
-    @Column
     @AllowNull(false)
+    @Column
     password!: string;
 }
