@@ -1,8 +1,10 @@
 import { Router } from 'express';
-import UserController from '../controllers/User';
+import UserController from '../controllers/user/User';
+import { checkUserData } from '../middleware/user';
 
 const router = Router();
 
-router.post('/registration', UserController.createUser);
+router.post('/create', checkUserData, UserController.createUser);
+router.get('/get/:email', UserController.getUserByEmail);
 
 export default router;

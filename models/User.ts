@@ -1,26 +1,18 @@
-import { DataTypes } from 'sequelize';
-import sequelize from '../src/db';
+import { AllowNull, Column, Model, Table, Unique } from 'sequelize-typescript';
 
-export const User = sequelize.define('User', {
-    id: {
-        type: DataTypes.INTEGER,
-        autoIncrement: true,
-        primaryKey: true,
-    },
-    email: {
-        type: DataTypes.STRING(255),
-        allowNull: false,
-    },
-    password: {
-        type: DataTypes.STRING(255),
-        allowNull: false,
-    },
-    access_token: {
-        type: DataTypes.STRING(255),
-        allowNull: true,
-    },
-    refresh_token: {
-        type: DataTypes.STRING(255),
-        allowNull: true,
-    },
-});
+@Table
+export class User extends Model {
+    @Unique
+    @AllowNull(false)
+    @Column
+    name!: string;
+
+    @Unique
+    @AllowNull(false)
+    @Column
+    email!: string;
+
+    @AllowNull(false)
+    @Column
+    password!: string;
+}
