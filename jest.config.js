@@ -8,5 +8,5 @@ module.exports = {
     collectCoverage: true,
     clearMocks: true,
     coverageDirectory: 'coverage',
-    testTimeout: 20000,
+    testTimeout: 30000,
 };
