@@ -1,8 +1,7 @@
 import { User } from '../models/User';
 
-export function getUserWithoutId(user: User) {
+export function getUserWithoutPassword(user: User) {
     return {
-        name: user.name,
         email: user.email,
     };
 }

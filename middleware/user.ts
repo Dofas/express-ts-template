@@ -12,18 +12,7 @@ export async function checkUserData(
             next();
         }
 
-        const { name, email } = request.body;
-        const userNameInDatabase = await User.findOne({
-            where: {
-                name,
-            },
-        });
-        if (userNameInDatabase) {
-            return next(
-                ApiError.badRequest('Username with that name already exists'),
-            );
-        }
-
+        const { email } = request.body;
         const emailInDatabase = await User.findOne({
             where: {
                 email,
